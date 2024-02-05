@@ -3,6 +3,9 @@ import React, { Suspense } from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Homepage from './components/Homepage';
 import Login from './components/Auth';
+import Signup from './components/Signup';
+import OtpVerify from './components/Signup/Otp';
+import DefaultLayout from './components/';
 
 
 const App = () => {
@@ -12,10 +15,10 @@ const App = () => {
     <Router>
       <Suspense fallback={"<SpinnerLoader />"}>
         <Routes>
-        <Route
+          <Route
             path="/"
             element={
-                <Homepage />
+              <Homepage />
             }
           />
           <Route
@@ -24,26 +27,25 @@ const App = () => {
               <Login />
             }
           />
-          {/* <Route
-            exact
-            path="/password_reset"
+          <Route
+            path="/signup"
             element={
-              <ForgotPassword />
+              <Signup />
             }
           />
           <Route
-            exact
-            path="/"
+            path="/otp"
             element={
-                <ResetPassword />
+              <OtpVerify />
             }
           />
+
           <Route
             path="/*"
             element={
               <DefaultLayout />
             }
-          /> */}
+          />
         </Routes>
       </Suspense>
     </Router>

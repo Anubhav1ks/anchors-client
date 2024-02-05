@@ -1,5 +1,6 @@
 import React, { useMemo } from 'react';
 import "./home.scss"
+import Header from '../layout/header';
 const Homepage = () => {
   // Dummy data for the table
   const tableData = useMemo(() => [
@@ -11,14 +12,7 @@ const Homepage = () => {
 
   return (
     <div>
-      <header>
-        <h1>Home</h1>
-        <div>
-          <button>Login</button>
-          <button>Signup</button>
-        </div>
-      </header>
-
+      <Header/>
       <main>
         <table>
           <thead>

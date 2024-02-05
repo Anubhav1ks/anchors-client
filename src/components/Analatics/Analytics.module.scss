@@ -1,0 +1,63 @@
+// Analytics.module.scss
+
+.analytics-container {
+    @apply flex;
+}
+
+.details-section,
+.graph-section {
+    @apply w-1/2 p-6;
+}
+
+.details-section h2,
+.graph-section h2 {
+    @apply text-3xl font-bold mb-4 text-gray-800;
+}
+
+.details-section {
+    @apply bg-gray-100 rounded-lg shadow-md;
+    
+    .details-title {
+        @apply text-4xl font-extrabold mb-2 text-blue-700;
+    }
+
+    .short-link,
+    .original-link {
+        @apply text-lg font-semibold mb-2 text-blue-600;
+    }
+
+    .total-count {
+        @apply text-2xl font-bold text-green-500;
+    }
+
+    .additional-info {
+        @apply mt-6;
+
+        .info-item {
+            @apply flex justify-between items-center border-b py-2;
+    
+            .label {
+                @apply text-lg text-gray-600 mr-4;
+                width: 120px; // Set a fixed width for labels
+            }
+    
+            .value {
+                @apply text-lg font-semibold text-gray-800;
+            }
+        }
+    }
+}
+
+.graph-section {
+    @apply bg-white rounded-lg shadow-md;
+
+    .line-graph {
+        @apply p-4 rounded border border-gray-200;
+        height: 200px; // Set a fixed height for the placeholder graph
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.5rem;
+        color: #718096;
+    }
+}

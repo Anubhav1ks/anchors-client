@@ -9,10 +9,52 @@
 @import 'tailwindcss/components';
 @import 'tailwindcss/utilities';
 
+body{
+  background-color:#ebebeb;
+}
+
+
+.main{
+  height: 100vh
+}
 button {
   @apply bg-green-500 text-white border-none px-4 py-2 mr-4 cursor-pointer;
 }
 
 button:hover {
   @apply bg-green-600;
+}
+  
+header {
+  @apply bg-gray-800 text-white p-4 px-16 text-center flex ;
+  justify-content: space-between;
+  align-items:center;
+  & h1{
+    @apply font-bold text-3xl mb-2;
+  }
+}
+
+header h1 {
+  @apply m-0 cursor-pointer ;
+}
+
+header div {
+  @apply mt-4;
+}
+
+button {
+  @apply bg-green-500 text-white border-none px-4 py-2 mr-4 cursor-pointer;
+}
+
+button:hover {
+  @apply bg-green-600;
+}
+
+
+// ===============================================Dashboard==========================================
+.Tableaction{
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

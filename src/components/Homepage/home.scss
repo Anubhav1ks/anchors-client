@@ -7,27 +7,7 @@ body {
     margin: 0;
     padding: 0;
   }
-  
-  header {
-    @apply bg-gray-800 text-white p-4 text-center;
-  }
-  
-  header h1 {
-    @apply m-0;
-  }
-  
-  header div {
-    @apply mt-4;
-  }
-  
-  button {
-    @apply bg-green-500 text-white border-none px-4 py-2 mr-4 cursor-pointer;
-  }
-  
-  button:hover {
-    @apply bg-green-600;
-  }
-  
+
   main {
     @apply mx-auto my-8;
   }
