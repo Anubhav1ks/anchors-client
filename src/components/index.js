@@ -1,41 +1,46 @@
-import React, { Suspense } from "react"
-import { Route, Routes } from "react-router-dom"
+import React, { Suspense, useEffect } from "react";
+import { Route, Routes, useNavigate } from "react-router-dom";
+import { isAuth } from "../functions/Auth";
 
-
-const Dashboard  = React.lazy(() => import("./Dashboard"))
-const Analatics =  React.lazy(()=>import("./Analatics"))
-
+const Dashboard = React.lazy(() => import("./Dashboard"));
+const Analatics = React.lazy(() => import("./Analatics"));
+const routes = [
+  {
+    path: "/dashboard",
+    component: Dashboard,
+    module: "Dashboard",
+  },
+  {
+    path: "/analatics",
+    component: Analatics,
+    module: "Dashboard",
+  },
+];
 const DefaultLayout = () => {
-  const routes = [
-    {
-      path: '/dashboard',
-      component: Dashboard,
-      module: 'Dashboard',
-    },
-    {
-      path: '/analatics',
-      component: Analatics,
-      module: 'Dashboard',
-    },
-  ]
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (!isAuth()) {
+      navigate("/login");
+    }
+  }, [navigate]);
+
   return (
     <div>
       <Suspense fallback={"<SpinnerLoader />"}>
         <Routes>
           {routes.map((route, index) => (
             <Route
-            exact
+              exact
               key={index}
               path={route.path}
-              element={
-                <route.component />
-              }
+              element={<route.component />}
             />
           ))}
         </Routes>
       </Suspense>
     </div>
-  )
-}
+  );
+};
 
-export default DefaultLayout
+export default DefaultLayout;

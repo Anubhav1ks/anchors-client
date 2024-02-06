@@ -58,3 +58,7 @@ button:hover {
   justify-content: center;
   align-items: center;
 }
+.Addbutton{
+  @apply w-full flex justify-end mt-2 me-16 ; 
+  padding-right: 11rem;
+}

@@ -1,18 +1,32 @@
-import React, { useMemo } from 'react';
-import "./home.scss"
-import Header from '../layout/header';
+import React, { useEffect, useMemo, useState } from "react";
+import "./home.scss";
+import Header from "../layout/header";
+import { handleApiRequest } from "../../functions/services";
 const Homepage = () => {
   // Dummy data for the table
-  const tableData = useMemo(() => [
-    { id: 1, title: 'Example 1', url: 'https://example.com/1' },
-    { id: 2, title: 'Example 2', url: 'https://example.com/2' },
-    { id: 3, title: 'Example 3', url: 'https://example.com/3' },
-    // Add more dummy data as needed
-  ], []);
+  const [Tabledata, setTabledata] = useState([]);
+  const tableData = useMemo(() => Tabledata, [Tabledata]);
+  const getUrls = async () => {
+    handleApiRequest(
+      "/user/getAllurl",
+      {},
+      (data) => {
+        setTabledata(data.data);
+      },
+      "get"
+    );
+  };
+  useEffect(() => {
+    getUrls();
+  }, []);
+
+  // const redirecturl=()=>{
+
+  // }
 
   return (
     <div>
-      <Header/>
+      <Header />
       <main>
         <table>
           <thead>
@@ -23,11 +37,16 @@ const Homepage = () => {
             </tr>
           </thead>
           <tbody>
-            {tableData.map(item => (
+            {tableData.map((item, i) => (
               <tr key={item.id}>
-                <td>{item.id}</td>
+                <td>{i + 1}</td>
                 <td>{item.title}</td>
-                <td>{item.url}</td>
+                <td>
+                  <a href={item.shortUrl} target="_blank" rel="noreferrer">
+                    {" "}
+                    {item.shortUrl}
+                  </a>
+                </td>
               </tr>
             ))}
           </tbody>
@@ -35,6 +54,6 @@ const Homepage = () => {
       </main>
     </div>
   );
-}
+};
 
 export default Homepage;

@@ -1,0 +1,84 @@
+// Define your styles here
+.modalContainer {
+  position: fixed;
+  z-index: 10;
+  overflow-y: auto;
+  top: 0;
+  left: 0;
+  width: 100%;
+}
+
+.overlay {
+  position: fixed;
+  inset: 0;
+  transition: opacity 0.3s;
+  background-color: rgba(0, 0, 0, 0.75);
+}
+
+.modalContent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  text-align: center;
+}
+
+.modalDialog {
+  background-color: white;
+  border-radius: 0.5rem;
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  max-width: 32rem;
+  width: 100%;
+}
+
+.modalHeader {
+  @apply bg-gray-800 text-white p-4 px-16 text-center flex ;
+  color: white;
+  padding: 1rem;
+  border-top-left-radius: 0.5rem;
+  border-top-right-radius: 0.5rem;
+}
+
+.modalBody {
+  text-align: left;
+  padding: 1rem;
+}
+
+.modalFooter {
+  background-color: #f0f0f0;
+  padding: 0.75rem;
+  text-align: right;
+  border-bottom-left-radius: 0.5rem;
+  border-bottom-right-radius: 0.5rem;
+}
+
+.inputField {
+  width: 100%;
+  border: 1px solid #ccc;
+  border-radius: 0.25rem;
+  padding: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.btn {
+  cursor: pointer;
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 0.25rem;
+}
+
+.cancelBtn {
+  background-color: #95a5a6; /* Gray */
+  color: white;
+}
+
+.createBtn {
+  @apply bg-green-500 text-white border-none px-4 py-2 mr-4 cursor-pointer;
+  color: white;
+}
+
+.hidden {
+  display: none;
+}
