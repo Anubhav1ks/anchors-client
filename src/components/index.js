@@ -1,6 +1,7 @@
 import React, { Suspense, useEffect } from "react";
 import { Route, Routes, useNavigate } from "react-router-dom";
 import { isAuth } from "../functions/Auth";
+import { Loader } from "./LoaderComponent";
 
 const Dashboard = React.lazy(() => import("./Dashboard"));
 const Analatics = React.lazy(() => import("./Analatics"));
@@ -27,7 +28,7 @@ const DefaultLayout = () => {
 
   return (
     <div>
-      <Suspense fallback={"<SpinnerLoader />"}>
+      <Suspense fallback={<Loader />}>
         <Routes>
           {routes.map((route, index) => (
             <Route

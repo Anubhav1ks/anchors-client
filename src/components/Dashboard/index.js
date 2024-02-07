@@ -5,10 +5,12 @@ import { isAuth } from "../../functions/Auth";
 import ModalComponent from "./Modal";
 import { handleApiRequest } from "../../functions/services";
 import Nodatacomponent from "../Nodatacomponent";
+import { Loader } from "../LoaderComponent";
 const Dashboard = () => {
   const navigate = useNavigate();
   const [Tabledata, setTabledata] = useState([]);
   const [editdata, seteditdata] = useState(null);
+  const [loading, setloading] = useState(false);
   const tableData = useMemo(() => Tabledata, [Tabledata]);
   useEffect(() => {
     if (!isAuth()) {
@@ -23,11 +25,13 @@ const Dashboard = () => {
   };
 
   const getUrls = async () => {
+    setloading(true);
     handleApiRequest(
       "/user/getUserurl",
       {},
       (data) => {
         setTabledata(data.data);
+        setloading(false);
       },
       "get"
     );
@@ -73,6 +77,14 @@ const Dashboard = () => {
               </tr>
             </thead>
             <tbody>
+            {loading ? (
+              <tr>
+                <td colSpan="3" style={{ textAlign: "center" }}>
+                  <Loader />
+                </td>
+              </tr>
+            ) : (
+              <>
               {tableData.length > 0 ? (
                 <>
                   {tableData.map((item, i) => (
@@ -94,11 +106,13 @@ const Dashboard = () => {
                 </>
               ) : (
                 <tr>
-                  <td colSpan="3" style={{ textAlign: "center" }}>
+                  <td colSpan="6" style={{ textAlign: "center" }}>
                     <Nodatacomponent />
                   </td>
                 </tr>
               )}
+              </>
+            )}
             </tbody>
           </table>
         </main>

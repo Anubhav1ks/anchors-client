@@ -6,6 +6,7 @@ import Login from './components/Auth';
 import Signup from './components/Signup';
 import OtpVerify from './components/Signup/Otp';
 import DefaultLayout from './components/';
+import { Loader } from './components/LoaderComponent';
 
 
 const App = () => {
@@ -13,7 +14,7 @@ const App = () => {
 
   return (
     <Router>
-      <Suspense fallback={"<SpinnerLoader />"}>
+      <Suspense fallback={ <Loader />}>
         <Routes>
           <Route
             path="/"
