@@ -79,7 +79,7 @@ const Dashboard = () => {
             <tbody>
             {loading ? (
               <tr>
-                <td colSpan="3" style={{ textAlign: "center" }}>
+                <td colSpan="6" style={{ textAlign: "center" }}>
                   <Loader />
                 </td>
               </tr>
