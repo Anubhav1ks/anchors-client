@@ -7,6 +7,7 @@ const ModalComponent = ({
   toggleModal,
   editdata,
   seteditdata,
+  getUrls
 }) => {
   const [name, setName] = useState();
   const [url, setUrl] = useState();
@@ -29,12 +30,13 @@ const ModalComponent = ({
       };
       handleApiRequest("/user/create/editurl", formData, (data) => {
         toggleModal();
+        getUrls()
       });
     }
 
     // Close the modal
     seteditdata(null);
-    toggleModal();
+    // toggleModal();
   };
   useEffect(() => {
     if (editdata) {

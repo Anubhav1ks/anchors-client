@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { isAuth } from "../../functions/Auth";
 import ModalComponent from "./Modal";
 import { handleApiRequest } from "../../functions/services";
+import Nodatacomponent from "../Nodatacomponent";
 const Dashboard = () => {
   const navigate = useNavigate();
   const [Tabledata, setTabledata] = useState([]);
@@ -72,22 +73,32 @@ const Dashboard = () => {
               </tr>
             </thead>
             <tbody>
-              {tableData.map((item, i) => (
-                <tr key={item._id}>
-                  <td>{i + 1}</td>
-                  <td>{item.title}</td>
-                  <td>{item.origUrl}</td>
-                  <td>{item.shortUrl}</td>
-                  <td>{item.clicks}</td>
-                  <td className="Tableaction">
-                    {/* <button onClick={editfunction}>Edit</button> */}
-                    <button onClick={() => editfunction(item)}>Edit</button>
-                    <button onClick={() => deletefunction(item, i)}>
-                      Delete
-                    </button>
+              {tableData.length > 0 ? (
+                <>
+                  {tableData.map((item, i) => (
+                    <tr key={item._id}>
+                      <td>{i + 1}</td>
+                      <td>{item.title}</td>
+                      <td>{item.origUrl}</td>
+                      <td>{item.shortUrl}</td>
+                      <td>{item.clicks}</td>
+                      <td className="Tableaction">
+                        {/* <button onClick={editfunction}>Edit</button> */}
+                        <button onClick={() => editfunction(item)}>Edit</button>
+                        <button onClick={() => deletefunction(item, i)}>
+                          Delete
+                        </button>
+                      </td>
+                    </tr>
+                  ))}
+                </>
+              ) : (
+                <tr>
+                  <td colSpan="3" style={{ textAlign: "center" }}>
+                    <Nodatacomponent />
                   </td>
                 </tr>
-              ))}
+              )}
             </tbody>
           </table>
         </main>
@@ -97,6 +108,7 @@ const Dashboard = () => {
         toggleModal={toggleModal}
         editdata={editdata}
         seteditdata={seteditdata}
+        getUrls={getUrls}
       />
     </>
   );

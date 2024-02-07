@@ -2,6 +2,7 @@ import React, { useEffect, useMemo, useState } from "react";
 import "./home.scss";
 import Header from "../layout/header";
 import { handleApiRequest } from "../../functions/services";
+import Nodatacomponent from "../Nodatacomponent";
 const Homepage = () => {
   // Dummy data for the table
   const [Tabledata, setTabledata] = useState([]);
@@ -20,10 +21,6 @@ const Homepage = () => {
     getUrls();
   }, []);
 
-  // const redirecturl=()=>{
-
-  // }
-
   return (
     <div>
       <Header />
@@ -37,18 +34,27 @@ const Homepage = () => {
             </tr>
           </thead>
           <tbody>
-            {tableData.map((item, i) => (
-              <tr key={item.id}>
-                <td>{i + 1}</td>
-                <td>{item.title}</td>
-                <td>
-                  <a href={item.shortUrl} target="_blank" rel="noreferrer">
-                    {" "}
-                    {item.shortUrl}
-                  </a>
+            {tableData.length > 0 ? (
+              <>
+                {tableData.map((item, i) => (
+                  <tr key={item.id}>
+                    <td>{i + 1}</td>
+                    <td>{item.title}</td>
+                    <td>
+                      <a href={item.shortUrl} target="_blank" rel="noreferrer">
+                        {item.shortUrl}
+                      </a>
+                    </td>
+                  </tr>
+                ))}
+              </>
+            ) : (
+              <tr>
+                <td colSpan="3" style={{ textAlign: "center" }}>
+                  <Nodatacomponent />
                 </td>
               </tr>
-            ))}
+            )}
           </tbody>
         </table>
       </main>
